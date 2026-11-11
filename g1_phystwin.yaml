@@ -1,0 +1,33 @@
+# Configuration for PhysTwin training on Unitree G1-scale model
+
+env:
+  name: "HumanoidG1-v0"
+  state_dim: 46          # generalized coords + velocities (simplified)
+  action_dim: 23
+  dt: 0.02
+  max_episode_steps: 500
+
+model:
+  latent_dim: 32
+  residual_hidden: 128
+  n_ensemble: 5
+  kappa: 2.0
+
+training:
+  batch_size: 256
+  lr: 3.0e-4
+  lambda_phys: 1.0
+  eps_energy: 1.0e-3
+  horizon: 10
+  total_steps: 200000
+  log_every: 1000
+  save_every: 10000
+
+adaptation:
+  window_size: 50
+  adapt_lr: 1.0e-4
+  max_adapt_steps: 100
+
+hardware:
+  target_device: "cuda"   # or "cpu" / "mps"
+  inference_hz: 50
